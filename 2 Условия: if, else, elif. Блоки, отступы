@@ -1,3 +1,6 @@
+from math import pi
+
+
 def sleeping_mode(min_sleep: int, max_sleep: int, pers_sleep: int) -> str:
     if min_sleep <= pers_sleep <= max_sleep:
         return 'Это нормально'
@@ -5,6 +8,7 @@ def sleeping_mode(min_sleep: int, max_sleep: int, pers_sleep: int) -> str:
         return 'Недосып'
     elif pers_sleep > max_sleep:
         return 'Пересып'
+
 
 def its_leap_year(year: int) -> str:
     if 1900 <= year <= 3000:
@@ -14,3 +18,82 @@ def its_leap_year(year: int) -> str:
             return 'Високосный'
         else:
             return 'Обычный'
+
+
+def calculator(
+        number_1: float, number_2: float, operation: str
+        ) -> float | str:
+    '''
+    available operation = ['+', '-', '/', '%', '//', '**', '*', 'mod', 'pow', 'div']
+    '''
+    if not number_2 and operation in ['/', '%', '//', 'mod', 'div']:
+        return 'enter a number other than 0'
+    elif operation == '+':
+        return number_1 + number_2
+    elif operation == '-':
+        return number_1 - number_2
+    elif operation == '/':
+        return number_1 / number_2
+    elif operation == '*':
+        return number_1 * number_2
+    elif operation in ['mod', '%']:
+        return number_1 % number_2
+    elif operation in ['pow', '**']:
+        return number_1 ** number_2
+    elif operation in ['div', '//']:
+        return number_1 // number_2
+
+
+def calculator_of_volume(form: str) -> float:
+    forms = ['rectangle', 'triangle', 'circle']
+    if form == forms[0]:
+        length: float = float(input())
+        width: float = float(input())
+        return length * width
+    elif form == forms[1]:
+        side_1: float = float(input())
+        side_2: float = float(input())
+        side_3: float = float(input())
+
+        def triangle_area(side_1: float, side_2: float, side_3: float) -> float:
+            side_1: float = float(input())
+            side_2: float = float(input())
+            side_3: float = float(input())
+            semi_perimeter = (side_1 + side_2 + side_3) / 2
+            area = (semi_perimeter * (semi_perimeter - side_1) *
+                    (semi_perimeter - side_2) * (semi_perimeter - side_3)) ** 0.5
+            return area
+
+        return triangle_area(side_1, side_2, side_3)
+    elif form == forms[2]:
+        phi = pi # --> need: from math import pi <-- !!!
+        radius: float = float(input())
+        return pi * (radius ** 2)
+
+
+def print_max_min_remaining(number_1: int, number_2: int, number_3: int) -> None:
+    numbers = [number_1, number_2, number_3]
+    print(max(numbers))
+    numbers.pop(numbers.index(max(numbers)))
+    print(min(numbers))
+    numbers.pop(numbers.index(min(numbers)))
+    print(*numbers)
+
+
+def correct_spiking_robot(number_of_programmer: int) -> str:
+    if 0 <= number_of_programmer <= 1000:
+        if (number_of_programmer % 10) in range(5, 10) or (number_of_programmer % 10) == 0 or (number_of_programmer % 100) in range(11, 15):
+                    return f"{str(number_of_programmer)} {'программистов'}"
+        elif (number_of_programmer % 10) in range(2, 5):
+            return f"{str(number_of_programmer)} {'программиста'}"
+        elif (number_of_programmer % 10) == 1:
+            return f"{str(number_of_programmer)} {'программист'}"
+
+
+def lucky_ticket(number: str) -> str:
+    sum_first_3_num = int(number[0]) + int(number[1]) + int(number[2])
+    sum_last_3_num = int(number[3]) + int(number[4]) + int(number[5])
+    if not sum_first_3_num - sum_last_3_num:
+        return 'Счастливый'
+    else:
+        return 'Обычный'
