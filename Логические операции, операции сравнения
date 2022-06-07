@@ -1,0 +1,5 @@
+def is_positive(number: float) -> bool:
+    return number > 0
+
+def number_is_two_digit(number: float) -> bool:
+    return 9 < number < 100
