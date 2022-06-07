@@ -1,5 +1,13 @@
 def is_positive(number: float) -> bool:
     return number > 0
 
+
 def number_is_two_digit(number: float) -> bool:
     return 9 < number < 100
+
+
+def number_in_interval(number: int) -> bool:
+    a_1, a_2 = -15, 12
+    b_1, b_2 = 14, 17
+    c_1, c_2 = 19, float('+inf')
+    return a_1 < number <= a_2 or b_1 < number < b_2 or c_1 <= number < c_2
