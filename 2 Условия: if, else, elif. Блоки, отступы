@@ -44,6 +44,13 @@ def calculator(
         return number_1 // number_2
 
 
+def triangle_area(side_1: float, side_2: float, side_3: float) -> float:
+    semi_perimeter = (side_1 + side_2 + side_3) / 2
+    area = (semi_perimeter * (semi_perimeter - side_1) * (
+            semi_perimeter - side_2) * (semi_perimeter - side_3)) ** 0.5
+    return area
+    
+    
 def calculator_of_volume(form: str) -> float:
     forms = ['rectangle', 'triangle', 'circle']
     if form == forms[0]:
