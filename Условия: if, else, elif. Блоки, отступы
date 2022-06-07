@@ -1,0 +1,16 @@
+def sleeping_mode(min_sleep: int, max_sleep: int, pers_sleep: int) -> str:
+    if min_sleep <= pers_sleep <= max_sleep:
+        return 'Это нормально'
+    elif pers_sleep < min_sleep:
+        return 'Недосып'
+    elif pers_sleep > max_sleep:
+        return 'Пересып'
+
+def its_leap_year(year: int) -> str:
+    if 1900 <= year <= 3000:
+        if year % 4 == 0 and year % 100 != 0:
+            return 'Високосный'
+        elif year % 400 == 0:
+            return 'Високосный'
+        else:
+            return 'Обычный'
