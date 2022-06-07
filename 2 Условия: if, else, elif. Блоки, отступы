@@ -90,11 +90,11 @@ def print_max_min_remaining(number_1: int, number_2: int, number_3: int) -> None
 def correct_spiking_robot(number_of_programmer: int) -> str:
     if 0 <= number_of_programmer <= 1000:
         if (number_of_programmer % 10) in range(5, 10) or (number_of_programmer % 10) == 0 or (number_of_programmer % 100) in range(11, 15):
-                    return f"{str(number_of_programmer)} {'программистов'}"
+                    return f'{str(number_of_programmer)} программистов'
         elif (number_of_programmer % 10) in range(2, 5):
-            return f"{str(number_of_programmer)} {'программиста'}"
+            return f'{str(number_of_programmer)} программиста'
         elif (number_of_programmer % 10) == 1:
-            return f"{str(number_of_programmer)} {'программист'}"
+            return f'{str(number_of_programmer)} программист'
 
 
 def lucky_ticket(number: str) -> str:
