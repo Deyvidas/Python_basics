@@ -1,0 +1,163 @@
+def sort(listt: list) -> list:
+    sorted_list = []
+    while listt:
+        sorted_list.append(listt.pop(listt.index(min(listt))))
+    return sorted_list
+
+
+def christmas_three(hight: int) -> None:
+    count = 1
+    print('</\\>'.center(hight * 2, ' '))
+    while count <= hight:
+        print(('*' * count).rjust(hight, ' '), ('*' * count).ljust(hight, ' '),sep='')
+        count += 1
+
+
+def sum_of_input_numbers(number: str = '', stop_process: str = '=') -> str:
+    print(f'enter 1 number, or  =  if you want to stop.')
+    number = input()
+    if number != stop_process:
+        stop_cicle = True
+        summa = float(number)
+        counter = 2
+        while stop_cicle:
+            print(f'Enter {counter} number, or  =  if you want to stop.')
+            input_in = input()
+            stop_cicle = input_in != stop_process
+            if stop_cicle:
+                summa += float(input_in)
+                counter += 1
+                if summa % 1 == 0:
+                    print(f'{int(summa)} is the sum of the numbers you entered.\n')
+                else:
+                    print(f'{summa} is the sum of the numbers you entered.\n')
+            else:
+                if summa % 1 == 0:
+                    return f'The program is closed!\nResult of sum = {int(summa)}'
+                else:
+                    return f'The program is closed!\nResult of sum = {summa}'
+        if summa % 1 == 0:
+            return f'The program is closed!\nResult of sum = {int(summa)}'
+        else:
+            return f'The program is closed!\nResult of sum = {summa}'
+    else:
+        return 'The program is closed!'
+
+
+def break_and_continue() -> None:
+    while True:
+        number = int(input())
+        if number < 10:
+            continue
+        elif number > 100:
+            break
+        else:
+            print(number)
+            continue
+
+
+def multipy_table(a_1: int, a_2: int, b_1: int, b_2: int) -> None:
+    if a_1 > 0 and a_2 > 0 and b_1 > 0 and b_2 > 0:
+        if a_1 <= a_2 and b_1 <= b_2:
+            print('', end='\t')
+            for i in range(b_1, b_2 + 1):
+                print(i, end='\t')
+            print()
+            for i in range(a_1, a_2 + 1):
+                print(i, end='\t')
+                for j in range(b_1, b_2 + 1):
+                    print(j * i, end='\t')
+                print()
+
+
+def sum_odd_in_range(start: int, end: int) -> int:
+    summ = 0
+    for number in range(start, end + 1):
+        if number % 2 != 0:
+            summ += number
+            print(number, end=' ')
+    print()
+    return summ
+
+
+def sum_odd_in_range_faster(start: int, end: int) -> None | int:
+    summ = 0
+    if start % 2 != 0:
+        for odd in range(start, end + 1, 2):
+            summ += odd
+            print(odd, end=' ')
+        print()
+    else:
+        for odd in range(start + 1, end + 1, 2):
+            summ += odd
+            print(odd, end=' ')
+        print()
+    return summ
+
+
+def avarage_of_divisible_by_3_in_range(start: int, end: int) -> float:
+    add_to_start = 3 - (start % 3)
+    summ_divisible_by_3 = 0
+    count_divisible_by_3 = 0
+    if start % 3 == 0:
+        for number in range(start, end + 1, 3):
+            summ_divisible_by_3 += number
+            count_divisible_by_3 += 1
+    else:
+        for number in range((start + add_to_start), end + 1, 3):
+            summ_divisible_by_3 += number
+            count_divisible_by_3 += 1
+    return summ_divisible_by_3 / count_divisible_by_3
+
+
+def gc_composition(string: str) -> float:
+    string = string.lower()
+    g_count = string.count('g')
+    c_count = string.count('c')
+    percent_gc_in_string = ((g_count + c_count) / len(string)) * 100
+    return percent_gc_in_string
+
+
+def word_is_palindrome(string: str) -> bool:
+    length_string = len(string)
+    left_ind = 0
+    right_ind = length_string - 1
+    while left_ind < right_ind:
+        if string[left_ind] != string[right_ind]:
+            return False
+        left_ind += 1
+        right_ind -= 1
+    return True
+
+
+def sting_encoding(string: str) -> str:
+    encodings_string = ''
+    length_string = len(string)
+    optimize = 0
+    for letter in string:
+        if optimize < length_string:
+            if not letter in encodings_string:
+                encodings_string += (letter + str(string.count(letter)))
+                optimize += string.count(letter)
+        else:
+            break
+    return encodings_string
+
+
+def sting_encoding_2(string: str) -> str:
+    string_separate = ''
+    for i in range(len(string) - 1):
+        if string[i] == string[i + 1]:
+            string_separate += string[i]
+        else:
+            string_separate += (string[i] + ' ')
+    string_separate += string[-1]
+
+    def string_separate_split_count(string_to_split: str) -> str:
+        lst_letters = string_to_split.split()
+        encodings_string = ''
+        for i in lst_letters:
+            encodings_string += i[0] + str(len(i))
+        return encodings_string
+
+    return string_separate_split_count(string_separate)
