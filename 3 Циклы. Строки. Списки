@@ -258,7 +258,6 @@ def matrix() -> None | list:
         for number_index in range(len(matrix_complete[list_index])):
             matrix_complete[list_index][number_index] = int(matrix_complete[list_index][number_index])
 
-
     matrix_complete_summa = [[0 for i in range(len(matrix_complete[j]))] for j in range(len(matrix_complete))]
     for line in range(len(matrix_complete)):
         for column in range(len(matrix_complete[line])):
@@ -278,6 +277,7 @@ def matrix() -> None | list:
                 matrix_complete_summa[line][column] = \
                     matrix_complete[line - 1][column] + matrix_complete[0][column] + \
                     matrix_complete[line][column - 1] + matrix_complete[line][column + 1]
+                    
     for line in range(len(matrix_complete_summa)):
         for number in range(len(matrix_complete_summa[line])):
             print(matrix_complete_summa[line][number], end=' ')
