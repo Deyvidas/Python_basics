@@ -161,3 +161,125 @@ def sting_encoding_2(string: str) -> str:
         return encodings_string
 
     return string_separate_split_count(string_separate)
+
+
+def sum_of_input(input: list) -> int:
+    return sum(input)
+
+
+def sum_of_nearby_number(numbers: list) -> list:
+    result = []
+    if len(numbers) > 2:
+        for number in range(len(numbers) - 1):
+            result.append(numbers[number - 1] + numbers[number + 1])
+        result.append(numbers[-2] + numbers[0])
+        return result
+    elif len(numbers) == 2:
+        result.append(numbers[1] * 2)
+        result.append(numbers[0] * 2)
+        return result
+    elif len(numbers) == 1:
+        result += numbers
+        return result
+
+
+def list_of_repeats_numbers(numbers: list) -> list:
+    lst = []
+    unique = []
+    if len(numbers) > 1:
+        for number in sorted(numbers):
+            if number not in unique:
+                unique.append(number)
+                if numbers.count(number) > 1:
+                    lst.append(number)
+    else:
+        return lst
+    return lst
+
+
+def min_in_list(numbers: list) -> int:
+    min = float('inf')
+    unique = []
+    for number in numbers:
+        if number not in unique:
+            unique.append(number)
+            if number < min:
+                min = number
+    return min
+
+
+def sum_of_degree() -> int:
+    first_input: int = int(input())
+    sum_of_input: int = first_input
+    sum_of_degree_input: int = first_input ** 2
+    while sum_of_input:
+        number: int = int(input())
+        sum_of_input += number
+        sum_of_degree_input += number ** 2
+    return sum_of_degree_input
+
+
+def return_first_n_numbers_in_sequence(n: int) -> list:
+    lst = []
+    for i in range(1, n+1):
+        lst += [i] * i
+    return lst[:n]
+
+
+def return_index_of_number_in_list(list_inp: list, number_inp: int) -> list:
+    index_number_in_list: list = []
+    index = -1
+    for number in list_inp:
+        index += 1
+        if number == number_inp:
+            index_number_in_list.append(index)
+        else:
+            pass
+    if index_number_in_list:
+        return index_number_in_list
+    else:
+        return ['Отсутствует']
+
+
+def matrix() -> None | list:
+    '''
+    Function return in list[line][column] sum of:
+        1) list[line][column + 1]
+        2) list[line][column - 1]
+        3) list[line + 1][column]
+        4) list[line - 1][column]
+    '''
+    matrix_complete = []
+    recived_line: list = list(input().split())
+    while recived_line != list('end'.split()):
+        matrix_complete.append(recived_line)
+        recived_line: list = list(input().split())
+    for list_index in range(len(matrix_complete)):
+        for number_index in range(len(matrix_complete[list_index])):
+            matrix_complete[list_index][number_index] = int(matrix_complete[list_index][number_index])
+
+
+    matrix_complete_summa = [[0 for i in range(len(matrix_complete[j]))] for j in range(len(matrix_complete))]
+    for line in range(len(matrix_complete)):
+        for column in range(len(matrix_complete[line])):
+            if line + 1 < len(matrix_complete) and column + 1 < len(matrix_complete[line]):
+                matrix_complete_summa[line][column] = \
+                    matrix_complete[line - 1][column] + matrix_complete[line + 1][column] + \
+                    matrix_complete[line][column - 1] + matrix_complete[line][column + 1]
+            elif column + 1 == len(matrix_complete[line]) and line + 1 == len(matrix_complete):
+                matrix_complete_summa[line][column] = \
+                    matrix_complete[line - 1][column] + matrix_complete[0][column] + \
+                    matrix_complete[line][column - 1] + matrix_complete[line][0]
+            elif column + 1 == len(matrix_complete[line]):
+                matrix_complete_summa[line][column] = \
+                    matrix_complete[line - 1][column] + matrix_complete[line + 1][column] + \
+                    matrix_complete[line][column - 1] + matrix_complete[line][0]
+            elif line + 1 == len(matrix_complete):
+                matrix_complete_summa[line][column] = \
+                    matrix_complete[line - 1][column] + matrix_complete[0][column] + \
+                    matrix_complete[line][column - 1] + matrix_complete[line][column + 1]
+    for line in range(len(matrix_complete_summa)):
+        for number in range(len(matrix_complete_summa[line])):
+            print(matrix_complete_summa[line][number], end=' ')
+        print()
+    return matrix_complete_summa
